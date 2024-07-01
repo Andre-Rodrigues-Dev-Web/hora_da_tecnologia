@@ -50,7 +50,7 @@ const Home = () => {
             titulo={noticia.titulo}
             imagem={noticia.imagem}
             descricao={noticia.descricao}
-            link={`/post/${noticia.id}`}
+            link={`/post/${noticia.slug}`}
           />
         ))}
       </HomeWrapper>

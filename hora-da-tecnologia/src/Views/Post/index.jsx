@@ -6,22 +6,21 @@ import { FaTwitter, FaFacebook, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { PostWrapper, PostTitle, PostContent, ShareButton } from './style';
 
 const Post = () => {
-  const { id } = useParams();
+  const { slug } = useParams(); // Agora estamos utilizando o slug ao invés do id
   const [post, setPost] = useState(null);
 
   useEffect(() => {
     axios
       .get("/noticias.json")
       .then((response) => {
-        const postEncontrado = response.data.find((n) => n.id === parseInt(id));
+        const postEncontrado = response.data.find((n) => n.slug === slug); // Buscamos pelo slug
         setPost(postEncontrado);
       })
       .catch((error) => console.error("Erro ao buscar a notícia:", error));
-  }, [id]);
+  }, [slug]);
 
   const handleShare = (network) => {
-    // Lógica para compartilhar em redes sociais
-    const shareUrl = `https://www.horadatecnologia.com.br/${id}`;
+    const shareUrl = `https://www.horadatecnologia.com.br/${slug}`; // Utilizamos o slug aqui também
     switch (network) {
       case 'twitter':
         window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.titulo)}`);
@@ -45,7 +44,6 @@ const Post = () => {
       return <PostWrapper>Carregando...</PostWrapper>;
     }
 
-    // Função para separar o conteúdo em parágrafos
     const createParagraphs = () => {
       return post.conteudo
         .split("\n\n")
@@ -62,7 +60,7 @@ const Post = () => {
           <meta property="og:description" content={post.descricao} />
           <meta property="og:image" content={post.imagem} />
           <meta property="og:image:secure_url" content={post.imagem} />
-          <meta property="og:url" content={`https://www.horadatecnologia.com.br/${id}`} />
+          <meta property="og:url" content={`https://www.horadatecnologia.com.br/${slug}`} />
           <meta property="og:type" content="article" />
           <meta property="article:published_time" content={post.dataPublicacao} />
           <meta property="article:author" content="Nome do Autor" />
@@ -70,7 +68,7 @@ const Post = () => {
           <meta name="twitter:title" content={post.titulo} />
           <meta name="twitter:description" content={post.descricao} />
           <meta name="twitter:image" content={post.imagem} />
-          <link rel="canonical" href={`https://www.horadatecnologia.com.br/${id}`} />
+          <link rel="canonical" href={`https://www.horadatecnologia.com.br/${slug}`} />
           <meta name="robots" content="index, follow" />
           <meta name="googlebot" content="index, follow" />
           <meta name="referrer" content="origin-when-crossorigin" />
