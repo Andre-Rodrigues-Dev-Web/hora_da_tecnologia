@@ -79,7 +79,7 @@ const Post = () => {
         <PostContent>{createParagraphs()}</PostContent>
         <ShareButton network="twitter" onClick={() => handleShare('twitter')}><FaTwitter /> Compartilhar no Twitter</ShareButton>
         <ShareButton network="facebook" onClick={() => handleShare('facebook')}><FaFacebook /> Compartilhar no Facebook</ShareButton>
-        <ShareButton network="linkedin" onClick={() => handleShare('linkedin')}><FaLinkedin /> Compartilhar no LinkedIn</ShareButton>
+        <ShareButton network="linkedin" onClick={() => handleShare('linkedin')}><FaLinkedin /> Compartilhar no Linkedin</ShareButton>
         <ShareButton network="whatsapp" onClick={() => handleShare('whatsapp')}><FaWhatsapp /> Compartilhar no WhatsApp</ShareButton>
       </PostWrapper>
     );
