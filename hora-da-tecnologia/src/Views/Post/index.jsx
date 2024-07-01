@@ -21,7 +21,7 @@ const Post = () => {
 
   const handleShare = (network) => {
     // Lógica para compartilhar em redes sociais
-    const shareUrl = `https://seusite.com/${id}`;
+    const shareUrl = `https://www.horadatecnologia.com.br/${id}`;
     switch (network) {
       case 'twitter':
         window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.titulo)}`);

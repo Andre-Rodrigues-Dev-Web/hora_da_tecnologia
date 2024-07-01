@@ -29,7 +29,7 @@ export const PostContent = styled.div`
 `;
 
 export const ShareButton = styled.button`
-  background-color: ${props => {
+  background-color: ${(props) => {
     switch (props.network) {
       case "twitter":
         return twitterColor;
@@ -55,7 +55,7 @@ export const ShareButton = styled.button`
   }
 
   &:hover {
-    background-color: ${props => {
+    background-color: ${(props) => {
       switch (props.network) {
         case "twitter":
           return "#1a91da";
@@ -63,6 +63,8 @@ export const ShareButton = styled.button`
           return "#1153a5";
         case "linkedin":
           return "#1d4a7e";
+        case "whatsapp":
+          return "#04BF45";
         default:
           return "#0056b3";
       }
