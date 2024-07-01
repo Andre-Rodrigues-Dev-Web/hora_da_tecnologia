@@ -6,7 +6,8 @@ import { AiOutlineHome, AiOutlineCodeSandbox, AiOutlineUser, AiOutlineStar, AiOu
 import { RiAdvertisementFill } from 'react-icons/ri';
 
 const Nav = styled.nav`
-  background-color: #333;
+  background-color: #fff;
+  box-shadow: 1px 3px 6px 0 #33333321;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -19,7 +20,7 @@ const Nav = styled.nav`
   .brand {
     display: flex;
     align-items: center;
-    color: #fff;
+    color: #333;
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: bold;
@@ -51,7 +52,7 @@ const Nav = styled.nav`
 
     a {
       text-decoration: none;
-      color: white;
+      color: #333;
       font-weight: bold;
       display: flex;
       align-items: center;
@@ -62,7 +63,7 @@ const Nav = styled.nav`
       }
 
       &:hover {
-        color: #f0f0f0;
+        color: #222;
       }
     }
   }
@@ -77,15 +78,15 @@ const Nav = styled.nav`
 
     button {
       padding: 8px 12px;
-      background-color: #555;
-      color: white;
+      background-color: #056cf2;
+      color: #fff;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: #777;
+        background-color: #0b64d8;
       }
     }
   }

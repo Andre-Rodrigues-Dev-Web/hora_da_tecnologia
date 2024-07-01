@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { HomeWrapper, PaginationWrapper, PaginationButton } from './style';
 import Card from '../../Shared/Components/Card';
 import bannerSite from '../../assets/imgs/logo/logo.jpg'
+import Carousel from '../../Shared/Components/Carousel';
 
 const Home = () => {
   const [noticias, setNoticias] = useState([]);
@@ -44,6 +45,7 @@ const Home = () => {
         <meta name="author" content="André Laurentino Rodrigues" />
       </Helmet>
       <HomeWrapper>
+        <Carousel />
         {currentItems.map(noticia => (
           <Card 
             key={noticia.id}
