@@ -4,7 +4,7 @@ import styled from "styled-components";
 const twitterColor = "#1da1f2";
 const facebookColor = "#1877f2";
 const linkedinColor = "#2867B2";
-const whatsappColor = "#0056b3";
+const whatsappColor = "#04BF45";
 
 export const PostWrapper = styled.div`
   padding: 20px;
@@ -67,7 +67,7 @@ export const ShareButton = styled.button`
         case "linkedin":
           return "#1d4a7e";
         case "whatsapp":
-          return "#04BF45";
+          return "#03A63C";
         default:
           return "#03A63C";
       }
