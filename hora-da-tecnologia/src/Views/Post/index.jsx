@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Helmet } from 'react-helmet';
-import { FaTwitter, FaFacebook, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
-import { PostWrapper, PostTitle, PostContent, ShareButton } from './style';
+import { Helmet } from "react-helmet";
+import { FaTwitter, FaFacebook, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import {
+  PostWrapper,
+  PostTitle,
+  SharedTitle,
+  PostContent,
+  ShareButton,
+} from "./style";
 
 const Post = () => {
   const { slug } = useParams(); // Agora estamos utilizando o slug ao invés do id
@@ -22,17 +28,37 @@ const Post = () => {
   const handleShare = (network) => {
     const shareUrl = `https://www.horadatecnologia.com.br/${slug}`; // Utilizamos o slug aqui também
     switch (network) {
-      case 'twitter':
-        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.titulo)}`);
+      case "twitter":
+        window.open(
+          `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+            shareUrl
+          )}&text=${encodeURIComponent(post.titulo)}`
+        );
         break;
-      case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`);
+      case "facebook":
+        window.open(
+          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+            shareUrl
+          )}`
+        );
         break;
-      case 'linkedin':
-        window.open(`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(post.titulo)}&summary=${encodeURIComponent(post.descricao)}&source=Hora%20da%20Tecnologia`);
+      case "linkedin":
+        window.open(
+          `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(
+            shareUrl
+          )}&title=${encodeURIComponent(
+            post.titulo
+          )}&summary=${encodeURIComponent(
+            post.descricao
+          )}&source=Hora%20da%20Tecnologia`
+        );
         break;
-      case 'whatsapp':
-        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(post.titulo)} - ${encodeURIComponent(shareUrl)}`);
+      case "whatsapp":
+        window.open(
+          `https://api.whatsapp.com/send?text=${encodeURIComponent(
+            post.titulo
+          )} - ${encodeURIComponent(shareUrl)}`
+        );
         break;
       default:
         break;
@@ -55,20 +81,32 @@ const Post = () => {
         <Helmet>
           <title>Hora da Tecnologia - {post.titulo}</title>
           <meta name="description" content={post.descricao} />
-          <meta name="keywords" content="palavra-chave1, palavra-chave2, palavra-chave3" />
+          <meta
+            name="keywords"
+            content="palavra-chave1, palavra-chave2, palavra-chave3"
+          />
           <meta property="og:title" content={post.titulo} />
           <meta property="og:description" content={post.descricao} />
           <meta property="og:image" content={post.imagem} />
           <meta property="og:image:secure_url" content={post.imagem} />
-          <meta property="og:url" content={`https://www.horadatecnologia.com.br/${slug}`} />
+          <meta
+            property="og:url"
+            content={`https://www.horadatecnologia.com.br/${slug}`}
+          />
           <meta property="og:type" content="article" />
-          <meta property="article:published_time" content={post.dataPublicacao} />
+          <meta
+            property="article:published_time"
+            content={post.dataPublicacao}
+          />
           <meta property="article:author" content="Nome do Autor" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={post.titulo} />
           <meta name="twitter:description" content={post.descricao} />
           <meta name="twitter:image" content={post.imagem} />
-          <link rel="canonical" href={`https://www.horadatecnologia.com.br/${slug}`} />
+          <link
+            rel="canonical"
+            href={`https://www.horadatecnologia.com.br/${slug}`}
+          />
           <meta name="robots" content="index, follow" />
           <meta name="googlebot" content="index, follow" />
           <meta name="referrer" content="origin-when-crossorigin" />
@@ -77,10 +115,19 @@ const Post = () => {
         <img src={post.imagem} alt={post.titulo} />
         <PostTitle>{post.titulo}</PostTitle>
         <PostContent>{createParagraphs()}</PostContent>
-        <ShareButton network="twitter" onClick={() => handleShare('twitter')}><FaTwitter /> Compartilhar no Twitter</ShareButton>
-        <ShareButton network="facebook" onClick={() => handleShare('facebook')}><FaFacebook /> Compartilhar no Facebook</ShareButton>
-        <ShareButton network="linkedin" onClick={() => handleShare('linkedin')}><FaLinkedin /> Compartilhar no Linkedin</ShareButton>
-        <ShareButton network="whatsapp" onClick={() => handleShare('whatsapp')}><FaWhatsapp /> Compartilhar no WhatsApp</ShareButton>
+        <SharedTitle>Compartilhe nas redes sociais</SharedTitle>
+        <ShareButton network="twitter" onClick={() => handleShare("twitter")}>
+          <FaTwitter /> Compartilhar no Twitter
+        </ShareButton>
+        <ShareButton network="facebook" onClick={() => handleShare("facebook")}>
+          <FaFacebook /> Compartilhar no Facebook
+        </ShareButton>
+        <ShareButton network="linkedin" onClick={() => handleShare("linkedin")}>
+          <FaLinkedin /> Compartilhar no Linkedin
+        </ShareButton>
+        <ShareButton network="whatsapp" onClick={() => handleShare("whatsapp")}>
+          <FaWhatsapp /> Compartilhar no WhatsApp
+        </ShareButton>
       </PostWrapper>
     );
   };

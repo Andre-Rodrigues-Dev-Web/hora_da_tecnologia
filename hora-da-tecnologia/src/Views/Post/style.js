@@ -20,6 +20,11 @@ export const PostTitle = styled.h1`
   margin-bottom: 20px;
 `;
 
+export const SharedTitle = styled.h2`
+  font-size: 1.6em;
+  margin-top: 20px;
+`;
+
 export const PostContent = styled.div`
   font-size: 1.2em;
   line-height: 1.6;
