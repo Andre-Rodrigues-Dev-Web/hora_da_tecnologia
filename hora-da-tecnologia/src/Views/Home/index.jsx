@@ -1,42 +1,37 @@
-// ListaNoticias.js
-import React from 'react';
-import { Link } from 'react-router-dom';
-import fs from 'fs';
-import path from 'path';
-import remark from 'remark';
-import remarkHTML from 'remark-html';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
+import Card from '../../Shared/Components/Card';
+
+const HomeWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 16px;
+`;
 
 const Home = () => {
-  // Leitura dos arquivos de notícias
-  const noticiasDir = path.resolve(__dirname, 'noticias');
-  const noticias = fs.readdirSync(noticiasDir);
+  const [noticias, setNoticias] = useState([]);
 
-  const parseMarkdown = async (filename) => {
-    const markdownPath = path.join(noticiasDir, filename);
-    const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
-    const { metadata } = await remark()
-      .use(remarkHTML)
-      .process(markdownContent);
-
-    return { metadata, slug: filename.replace('.md', '') };
-  };
+  useEffect(() => {
+    axios.get('/noticias.json')
+      .then(response => setNoticias(response.data))
+      .catch(error => console.error('Erro ao buscar as notícias:', error));
+  }, []);
 
   return (
-    <div className="noticias">
-      {noticias.map((noticia, index) => {
-        const { metadata, slug } = parseMarkdown(noticia);
-
-        return (
-          <div key={index} className="noticia-card">
-            <h2>{metadata.title}</h2>
-            <img src={metadata.image} alt={metadata.title} />
-            <p>Categoria: {metadata.category}</p>
-            <Link to={`/noticia/${slug}`}>Visualizar notícia completa</Link>
-          </div>
-        );
-      })}
-    </div>
+    <HomeWrapper>
+      {noticias.map(noticia => (
+        <Card 
+          key={noticia.id}
+          titulo={noticia.titulo}
+          imagem={noticia.imagem}
+          descricao={noticia.descricao}
+          link={`/post/${noticia.id}`}
+        />
+      ))}
+    </HomeWrapper>
   );
 };
 
-export default <Home></Home>;
+export default Home;

@@ -1,41 +1,50 @@
-// NoticiaCompleta.js
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import fs from 'fs';
-import path from 'path';
-import remark from 'remark';
-import remarkHTML from 'remark-html';
+import styled from 'styled-components';
+import axios from 'axios';
+
+const PostWrapper = styled.div`
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 800px;
+`;
+
+const PostTitle = styled.h1`
+  font-size: 2em;
+  margin-bottom: 20px;
+`;
+
+const PostContent = styled.p`
+  font-size: 1.2em;
+  line-height: 1.6;
+`;
 
 const Post = () => {
   const { id } = useParams();
-  const [noticia, setNoticia] = useState(null);
+  const [post, setPost] = useState(null);
 
   useEffect(() => {
-    const fetchNoticia = async () => {
-      const noticiasDir = path.resolve(__dirname, 'noticias');
-      const markdownPath = path.join(noticiasDir, `${id}.md`);
-      const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
-      const { metadata, contents } = await remark()
-        .use(remarkHTML)
-        .process(markdownContent);
-
-      setNoticia({ ...metadata, conteudo: contents });
-    };
-
-    fetchNoticia();
+    axios.get('/noticias.json')
+      .then(response => {
+        const postEncontrado = response.data.find(n => n.id === parseInt(id));
+        setPost(postEncontrado);
+      })
+      .catch(error => console.error('Erro ao buscar a notícia:', error));
   }, [id]);
 
-  if (!noticia) return <div>Loading...</div>;
+  if (!post) {
+    return <PostWrapper>Carregando...</PostWrapper>;
+  }
 
   return (
-    <div className="noticia-completa">
-      <h2>{noticia.title}</h2>
-      <img src={noticia.image} alt={noticia.title} />
-      <p>Data: {noticia.date}</p>
-      <p>Autor: {noticia.author}</p>
-      <p>Categoria: {noticia.category}</p>
-      <div dangerouslySetInnerHTML={{ __html: noticia.conteudo }} />
-    </div>
+    <PostWrapper>
+      <img src={post.imagem} alt={post.titulo} srcset={post.imagem} />
+      <PostTitle>{post.titulo}</PostTitle>
+      <PostContent>{post.conteudo}</PostContent>
+    </PostWrapper>
   );
 };
 
