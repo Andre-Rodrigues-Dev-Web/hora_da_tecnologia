@@ -4,6 +4,7 @@ import styled from "styled-components";
 const twitterColor = "#1da1f2";
 const facebookColor = "#1877f2";
 const linkedinColor = "#2867B2";
+const whatsappColor = "#0056b3";
 
 export const PostWrapper = styled.div`
   padding: 20px;
@@ -37,6 +38,8 @@ export const ShareButton = styled.button`
         return facebookColor;
       case "linkedin":
         return linkedinColor;
+      case "whatsapp":
+        return whatsappColor;
       default:
         return "#007bff";
     }
@@ -66,7 +69,7 @@ export const ShareButton = styled.button`
         case "whatsapp":
           return "#04BF45";
         default:
-          return "#0056b3";
+          return "#03A63C";
       }
     }};
   }
