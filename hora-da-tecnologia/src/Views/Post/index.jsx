@@ -1,42 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import axios from 'axios';
-
-const PostWrapper = styled.div`
-  padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-  max-width: 800px;
-`;
-
-const PostTitle = styled.h1`
-  font-size: 2em;
-  margin-bottom: 20px;
-`;
-
-const PostContent = styled.div`
-  font-size: 1.2em;
-  line-height: 1.6;
-
-  p {
-    margin-bottom: 30px; /* Adiciona espaço entre os parágrafos */
-  }
-`;
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import axios from "axios";
+import { Helmet } from 'react-helmet';
+import { PostWrapper, PostTitle, PostContent } from './style';
 
 const Post = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    axios.get('/noticias.json')
-      .then(response => {
-        const postEncontrado = response.data.find(n => n.id === parseInt(id));
+    axios
+      .get("/noticias.json")
+      .then((response) => {
+        const postEncontrado = response.data.find((n) => n.id === parseInt(id));
         setPost(postEncontrado);
       })
-      .catch(error => console.error('Erro ao buscar a notícia:', error));
+      .catch((error) => console.error("Erro ao buscar a notícia:", error));
   }, [id]);
 
   const renderContent = () => {
@@ -46,13 +26,36 @@ const Post = () => {
 
     // Função para separar o conteúdo em parágrafos
     const createParagraphs = () => {
-      return post.conteudo.split('\n\n').map((paragraph, index) => (
-        <p key={index}>{paragraph}</p>
-      ));
+      return post.conteudo
+        .split("\n\n")
+        .map((paragraph, index) => <p key={index}>{paragraph}</p>);
     };
 
     return (
       <PostWrapper>
+        <Helmet>
+          <title>Hora da Tecnologia - {post.titulo}</title>
+          <meta name="description" content={post.descricao} />
+          <meta
+            name="keywords"
+            content="palavra-chave1, palavra-chave2, palavra-chave3"
+          />
+          <meta property="og:title" content={post.titulo} />
+          <meta property="og:description" content={post.descricao} />
+          <meta property="og:image" content={post.imagem} />
+          <meta property="og:url" content={`https://seusite.com/${id}`} />
+          <meta property="og:type" content="article" />
+          <meta
+            property="article:published_time"
+            content={post.dataPublicacao} // Assumindo que há uma data de publicação no formato adequado
+          />
+          <meta property="article:author" content="Nome do Autor" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={post.titulo} />
+          <meta name="twitter:description" content={post.descricao} />
+          <meta name="twitter:image" content={post.imagem} />
+          <link rel="canonical" href={`https://seusite.com/${id}`} />
+        </Helmet>
         <img src={post.imagem} alt={post.titulo} />
         <PostTitle>{post.titulo}</PostTitle>
         <PostContent>{createParagraphs()}</PostContent>
