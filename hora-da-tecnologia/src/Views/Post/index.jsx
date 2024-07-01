@@ -17,9 +17,13 @@ const PostTitle = styled.h1`
   margin-bottom: 20px;
 `;
 
-const PostContent = styled.p`
+const PostContent = styled.div`
   font-size: 1.2em;
   line-height: 1.6;
+
+  p {
+    margin-bottom: 30px; /* Adiciona espaço entre os parágrafos */
+  }
 `;
 
 const Post = () => {
@@ -35,17 +39,28 @@ const Post = () => {
       .catch(error => console.error('Erro ao buscar a notícia:', error));
   }, [id]);
 
-  if (!post) {
-    return <PostWrapper>Carregando...</PostWrapper>;
-  }
+  const renderContent = () => {
+    if (!post) {
+      return <PostWrapper>Carregando...</PostWrapper>;
+    }
 
-  return (
-    <PostWrapper>
-      <img src={post.imagem} alt={post.titulo} srcset={post.imagem} />
-      <PostTitle>{post.titulo}</PostTitle>
-      <PostContent>{post.conteudo}</PostContent>
-    </PostWrapper>
-  );
+    // Função para separar o conteúdo em parágrafos
+    const createParagraphs = () => {
+      return post.conteudo.split('\n\n').map((paragraph, index) => (
+        <p key={index}>{paragraph}</p>
+      ));
+    };
+
+    return (
+      <PostWrapper>
+        <img src={post.imagem} alt={post.titulo} />
+        <PostTitle>{post.titulo}</PostTitle>
+        <PostContent>{createParagraphs()}</PostContent>
+      </PostWrapper>
+    );
+  };
+
+  return renderContent();
 };
 
 export default Post;
