@@ -8,6 +8,16 @@ const CardWrapper = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
   margin: 16px;
+  a{
+    background-color: #056CF2;
+    border-radius: 10px;
+    color: #fff;
+    display: inline-block;
+    padding: 7px 20px;
+  }
+  @media(min-width: 768px){
+    width: 33.33%;
+  }
 `;
 
 const CardTitle = styled.h2`
@@ -18,6 +28,7 @@ const CardTitle = styled.h2`
 const CardImage = styled.img`
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  width: 100%;
 `;
 
 const CardCategoria = styled.small`
