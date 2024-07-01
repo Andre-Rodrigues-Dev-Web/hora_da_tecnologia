@@ -5,6 +5,9 @@ export const HomeWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   padding: 16px;
+  @media(min-width: 768px){
+    width: 1360px;
+  }
 `;
 
 export const PaginationWrapper = styled.div`
