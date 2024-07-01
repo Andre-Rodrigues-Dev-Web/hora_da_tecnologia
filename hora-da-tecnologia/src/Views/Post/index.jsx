@@ -30,7 +30,7 @@ const Post = () => {
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`);
         break;
       case 'linkedin':
-        window.open(`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(post.titulo)}`);
+        window.open(`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(post.titulo)}&summary=${encodeURIComponent(post.descricao)}&source=Hora%20da%20Tecnologia`);
         break;
       case 'whatsapp':
         window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(post.titulo)} - ${encodeURIComponent(shareUrl)}`);
@@ -61,6 +61,7 @@ const Post = () => {
           <meta property="og:title" content={post.titulo} />
           <meta property="og:description" content={post.descricao} />
           <meta property="og:image" content={post.imagem} />
+          <meta property="og:image:secure_url" content={post.imagem} />
           <meta property="og:url" content={`https://www.horadatecnologia.com.br/${id}`} />
           <meta property="og:type" content="article" />
           <meta property="article:published_time" content={post.dataPublicacao} />
