@@ -32,7 +32,6 @@ const Footer = () => {
           </li>
         </ul>
       </Links>
-      <h3>Siga-nos no Instagram</h3>
       <SocialIcons>
         <a href="https://www.instagram.com/horadatecnologia_oficial/" target="_blank" rel="noopener noreferrer">
           <InstagramIcon />

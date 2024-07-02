@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import { AiOutlineInstagram } from 'react-icons/ai';
+import styled from "styled-components";
+import { AiOutlineInstagram } from "react-icons/ai";
 
 export const FooterContainer = styled.footer`
   background-color: #333;
   color: #fff;
   padding: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
 
@@ -33,15 +33,20 @@ export const Brand = styled.div`
 export const Links = styled.div`
   ul {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    @media (min-width: 768px) {
+      flex-direction: row;
+      width: 620px;
+    }
   }
 
   li {
     margin-right: 10px;
     margin-bottom: 5px;
+    &:last-child{
+        margin-right: 0;
+    }
   }
 
   a {
