@@ -35,8 +35,10 @@ export const Links = styled.div`
     list-style-type: none;
     display: flex;
     flex-direction: column;
+    gap: 30px;
     @media (min-width: 768px) {
       flex-direction: row;
+      gap: 20px;
       width: 620px;
     }
   }
