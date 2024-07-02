@@ -39,7 +39,7 @@ export const Links = styled.div`
     @media (min-width: 768px) {
       flex-direction: row;
       gap: 20px;
-      width: 620px;
+      width: 750px;
     }
   }
 
