@@ -14,6 +14,7 @@ import {
 const Post = () => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
@@ -22,11 +23,16 @@ const Post = () => {
         const postEncontrado = response.data.find((n) => n.slug === slug); // Buscamos pelo slug
         setPost(postEncontrado);
       })
-      .catch((error) => console.error("Erro ao buscar a notícia:", error));
+      .catch((error) => {
+        console.error("Erro ao buscar a notícia:", error);
+        setError("Erro ao carregar a notícia. Tente novamente mais tarde.");
+      });
   }, [slug]);
 
   const handleShare = (network) => {
-    const shareUrl = `https://www.horadatecnologia.com.br/${slug}`; // Utilizamos o slug aqui também
+    if (!post) return;
+    
+    const shareUrl = `https://www.horadatecnologia.com.br/${slug}`;
     switch (network) {
       case "twitter":
         window.open(
@@ -66,6 +72,10 @@ const Post = () => {
   };
 
   const renderContent = () => {
+    if (error) {
+      return <PostWrapper>{error}</PostWrapper>;
+    }
+
     if (!post) {
       return <PostWrapper>Carregando...</PostWrapper>;
     }
@@ -120,7 +130,7 @@ const Post = () => {
         </Helmet>
         <img src={post.imagem} alt={post.titulo} />
         <PostTitle>{post.titulo}</PostTitle>
-        {id === 0 || id === 5 || id === 6 ? createParagraphsFormat() : <PostContent>{createParagraphs()}</PostContent>}
+        {id === 0 || id === 5 || id === 6 || id === 7 ? createParagraphsFormat() : <PostContent>{createParagraphs()}</PostContent>}
         <SharedTitle>Compartilhe nas redes sociais</SharedTitle>
         <ShareButton network="twitter" onClick={() => handleShare("twitter")}>
           <FaTwitter /> Compartilhar no Twitter
