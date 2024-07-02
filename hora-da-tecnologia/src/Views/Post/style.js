@@ -20,7 +20,7 @@ export const PostWrapper = styled.div`
     p {
       line-height: 1.5;
       margin-top: 20px;
-      text-indent: 1.25cm;
+      text-indent: 20px;
     }
   }
 `;
@@ -38,7 +38,7 @@ export const SharedTitle = styled.h2`
 export const PostContent = styled.div`
   font-size: 1.2em;
   line-height: 1.6;
-  text-indent: 1.25cm;
+  text-indent: 20px;
   p {
     margin-bottom: 30px;
   }

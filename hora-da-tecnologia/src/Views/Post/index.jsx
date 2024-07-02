@@ -77,7 +77,7 @@ const Post = () => {
     };
 
     const id = post.id;
-    
+
     const createParagraphsFormat = () => {
       return <div className="post-content" dangerouslySetInnerHTML={{ __html: post.conteudo }} />;
     };
@@ -120,7 +120,7 @@ const Post = () => {
         </Helmet>
         <img src={post.imagem} alt={post.titulo} />
         <PostTitle>{post.titulo}</PostTitle>
-        {id === 5 || id === 0 ? createParagraphsFormat() : <PostContent>{createParagraphs()}</PostContent>}
+        {id === 0 || id === 5 || id === 6 ? createParagraphsFormat() : <PostContent>{createParagraphs()}</PostContent>}
         <SharedTitle>Compartilhe nas redes sociais</SharedTitle>
         <ShareButton network="twitter" onClick={() => handleShare("twitter")}>
           <FaTwitter /> Compartilhar no Twitter
