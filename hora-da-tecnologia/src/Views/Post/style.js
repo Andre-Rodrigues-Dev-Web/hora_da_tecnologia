@@ -13,6 +13,16 @@ export const PostWrapper = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 20px auto;
   max-width: 800px;
+  .post-content {
+    h3 {
+      padding: 10px 0;
+    }
+    p {
+      line-height: 1.5;
+      margin-top: 20px;
+      text-indent: 1.25cm;
+    }
+  }
 `;
 
 export const PostTitle = styled.h1`
@@ -28,9 +38,9 @@ export const SharedTitle = styled.h2`
 export const PostContent = styled.div`
   font-size: 1.2em;
   line-height: 1.6;
-
+  text-indent: 1.25cm;
   p {
-    margin-bottom: 30px; /* Adiciona espaço entre os parágrafos */
+    margin-bottom: 30px;
   }
 `;
 

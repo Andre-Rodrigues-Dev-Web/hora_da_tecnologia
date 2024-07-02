@@ -12,7 +12,7 @@ import {
 } from "./style";
 
 const Post = () => {
-  const { slug } = useParams(); // Agora estamos utilizando o slug ao invés do id
+  const { slug } = useParams();
   const [post, setPost] = useState(null);
 
   useEffect(() => {
@@ -76,6 +76,12 @@ const Post = () => {
         .map((paragraph, index) => <p key={index}>{paragraph}</p>);
     };
 
+    const id = post.id;
+    
+    const createParagraphsFormat = () => {
+      return <div className="post-content" dangerouslySetInnerHTML={{ __html: post.conteudo }} />;
+    };
+
     return (
       <PostWrapper>
         <Helmet>
@@ -114,7 +120,7 @@ const Post = () => {
         </Helmet>
         <img src={post.imagem} alt={post.titulo} />
         <PostTitle>{post.titulo}</PostTitle>
-        <PostContent>{createParagraphs()}</PostContent>
+        {id === 5 || id === 0 ? createParagraphsFormat() : <PostContent>{createParagraphs()}</PostContent>}
         <SharedTitle>Compartilhe nas redes sociais</SharedTitle>
         <ShareButton network="twitter" onClick={() => handleShare("twitter")}>
           <FaTwitter /> Compartilhar no Twitter
