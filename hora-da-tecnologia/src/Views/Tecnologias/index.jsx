@@ -57,7 +57,7 @@ const Tecnologias = () => {
               imagem={noticia.imagem}
               descricao={noticia.descricao}
               link={`/post/${noticia.slug}`}
-              widthCardNews="33.33%"
+              larguraCard="310px"
             />
           ))}
         </TecnologiasWrapper>

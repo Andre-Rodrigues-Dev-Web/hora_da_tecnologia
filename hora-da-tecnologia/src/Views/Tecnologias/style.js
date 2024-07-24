@@ -13,13 +13,13 @@ const ContainerContents = styled.div`
 const ContentLeft = styled.div`
   width: 100%;
   @media (min-width: 768px) {
-    width: 80%;
+    width: 79%;
   }
 `;
 const ContentRight = styled.div`
   width: 100%;
   @media (min-width: 768px) {
-    width: 20%;
+    width: 21%;
   }
 `;
 

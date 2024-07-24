@@ -8,8 +8,8 @@ import {
   CardDescription,
 } from './style';
 
-const Card = ({ titulo, imagem, categoria, descricao, link }) => (
-  <CardWrapper>
+const Card = ({ titulo, imagem, categoria, descricao, link, larguraCard }) => (
+  <CardWrapper widthCardNews={larguraCard}>
     <CardImage src={imagem} />
     <CardCategoria>{categoria}</CardCategoria>
     <CardTitle>{titulo}</CardTitle>
