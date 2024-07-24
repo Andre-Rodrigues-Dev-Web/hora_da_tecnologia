@@ -105,7 +105,7 @@ const Menu = () => {
           </Link>
         </li>
         <li className="menu-item">
-          <Link to="/tecnologia">
+          <Link to="/tecnologias">
             <AiOutlineCodeSandbox /> Tecnologia
           </Link>
         </li>

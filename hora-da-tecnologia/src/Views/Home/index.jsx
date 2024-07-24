@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Helmet } from 'react-helmet';
 import { HomeWrapper, PaginationWrapper, PaginationButton } from './style';
 import Card from '../../Shared/Components/Card';
 import bannerSite from '../../assets/imgs/logo/logo.jpg'
 import Carousel from '../../Shared/Components/Carousel';
+import Seo from '../../Shared/Components/Seo';
 
 const Home = () => {
   const [noticias, setNoticias] = useState([]);
@@ -27,23 +27,14 @@ const Home = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Notícias da Hora da Tecnologia</title>
-        <meta name="description" content="Confira as últimas notícias de tecnologia na Hora da Tecnologia." />
-        <meta name="keywords" content="tecnologia, notícias de tecnologia, Hora da Tecnologia" />
-        {/* Meta tags de redes sociais */}
-        <meta property="og:title" content="Notícias da Hora da Tecnologia" />
-        <meta property="og:description" content="Confira as últimas notícias de tecnologia na Hora da Tecnologia." />
-        <meta property="og:image" content={bannerSite} />
-        <meta property="og:url" content="https://www.horadatecnologia.com.br/" />
-        <meta property="og:type" content="website" />
-        <meta property="article:publisher" content="https://www.facebook.com/horadatecnologia" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Notícias da Hora da Tecnologia" />
-        <meta name="twitter:description" content="Confira as últimas notícias de tecnologia na Hora da Tecnologia." />
-        <meta name="twitter:image" content={bannerSite} />
-        <meta name="author" content="André Laurentino Rodrigues" />
-      </Helmet>
+      <Seo
+        title="Notícias da Hora da Tecnologia"
+        description="Confira as últimas notícias de tecnologia na Hora da Tecnologia."
+        keywords="tecnologia, notícias de tecnologia, Hora da Tecnologia"
+        image={bannerSite}
+        url="https://www.horadatecnologia.com.br/tecnologias"
+        author="André Laurentino Rodrigues"
+      />
       <HomeWrapper>
         <Carousel />
         {currentItems.map(noticia => (

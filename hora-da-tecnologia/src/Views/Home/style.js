@@ -6,7 +6,7 @@ export const HomeWrapper = styled.div`
   justify-content: center;
   padding: 16px;
   @media(min-width: 768px){
-    width: 1360px;
+    width: 98%;
   }
 `;
 
